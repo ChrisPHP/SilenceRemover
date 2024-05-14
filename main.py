@@ -21,10 +21,17 @@ if __name__ == "__main__":
 
     input = "input"
     output = "output"
+    threads=1
+    ss=8
+
     if args.input:
         input = args.input
     if args.output:
         output = args.output
+    if args.ss:
+        ss = args.ss
+    if args.threads:
+        threads = args.threads
 
     if os.path.isdir(input) != True:
         os.makedirs(input)
@@ -35,13 +42,6 @@ if __name__ == "__main__":
     for root, dirs, files in os.walk(input):
         for file in files:
             file_names.append(os.path.join(root, file))
-
-    threads=1
-    ss=8
-    if args.ss:
-        ss = args.ss
-    if args.threads:
-        threads = args.threads
 
     unsilence_videos(files=file_names, output=output, ss=ss, threads=threads)
     print("Videos rendered!")
